@@ -126,50 +126,9 @@ management.metrics.export.splunk.enabled=true
 
 For more advanced metrics and monitoring, you can configure more detailed logging for the Spring Boot Actuator and send that data to Splunk as well.
 
-# Steps to Log Information in Your Spring Boot Microservice
+### Steps to Log Information in Your Spring Boot Microservice
 
-```
-package com.example.demo;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class MyController {
-
-    // Creating an SLF4J logger instance
-    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
-
-    @GetMapping("/hello")
-    public String sayHello() {
-        logger.info("Handling 'hello' request");  // Log an INFO message
-
-        try {
-            // Simulating some business logic
-            String result = performBusinessLogic();
-            logger.debug("Business logic result: {}", result);  // Log a DEBUG message
-        } catch (Exception e) {
-            logger.error("Error occurred in processing request", e);  // Log an ERROR message
-        }
-
-        return "Hello, Spring Boot with Splunk!";
-    }
-
-    // Example method to simulate business logic
-    private String performBusinessLogic() throws Exception {
-        logger.info("Performing business logic...");
-        // Simulate a delay or business computation
-        Thread.sleep(500);
-        return "Business logic completed successfully!";
-    }
-}
-```
-
-# Steps to Log Information in Your Spring Boot Microservice
-
-## 1. Add SLF4J Logger in Your Class
+#### Add SLF4J Logger in Your Class
 
 In each class where you want to log information, you need to create an SLF4J logger instance. This logger will be used to log various levels of messages such as `INFO`, `DEBUG`, `WARN`, and `ERROR`.
 
